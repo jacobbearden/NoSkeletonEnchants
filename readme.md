@@ -1,4 +1,4 @@
-# NoSkeletonEnchants
+# NoSkeletonEnchants ![workflow](https://github.com/jacobbearden/NoSkeletonEnchants/workflows/workflow/badge.svg)
 
 > Plugin to disable skeletons dropping enchanted gear in Minecraft.
 
