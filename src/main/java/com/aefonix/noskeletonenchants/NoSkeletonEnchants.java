@@ -12,6 +12,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class NoSkeletonEnchants extends JavaPlugin implements Listener {
@@ -34,9 +37,8 @@ public class NoSkeletonEnchants extends JavaPlugin implements Listener {
         ItemStack item = skeleton.getEquipment().getItemInHand();
         ItemMeta meta = item.getItemMeta();
 
-        // set custom name to prevent removing enchants from bows picked up off the ground
-        meta.setDisplayName("Skeleton Bow");
-        item.setItemMeta(meta);
+        List<String> lore = Lists.newArrayList();
+        lore.add("Skeleton Bow");
 
         skeleton.getEquipment().setItemInHand(item);
       }
@@ -56,12 +58,12 @@ public class NoSkeletonEnchants extends JavaPlugin implements Listener {
         ItemMeta meta = item.getItemMeta();
 
         // check for custom name to prevent removing enchants from bows picked up off the ground
-        if (item.getType() == Material.BOW && meta.getDisplayName().equals("Skeleton Bow")) {
+        if (item.getType() == Material.BOW && meta.getLore().contains("Skeleton Bow")) {
           for (Enchantment enchant : item.getItemMeta().getEnchants().keySet()) {
             meta.removeEnchant(enchant);
           }
 
-          meta.setDisplayName(null);
+          meta.setLore(Lists.newArrayList());
           item.setItemMeta(meta);
         }
       }
